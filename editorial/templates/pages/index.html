@@ -1,0 +1,49 @@
+{% extends "pages/page.html" %}
+{% load pages_tags mezzanine_tags i18n staticfiles blog_tags keyword_tags %}
+
+{% block main %}
+
+
+<!-- Banner -->
+<section id="banner">
+    <div class="content">
+        <header>
+            <h1>É tempo<br />
+            de urgência!</h1>
+            <p>Canal de ideias, sínteses e propostas para a esquerda de 
+            Duque de Caxias e da Baixada Fluminense.</p>
+        </header>
+        <p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+        <ul class="actions">
+            <li><a href="#" class="button big">Learn More</a></li>
+        </ul>
+    </div>
+    <span class="image object">
+        <img src="/static/media/uploads/tempo_de_urgencia.jpg" alt="" />
+    </span>
+</section>
+
+<!-- Section -->
+<section>
+    <header class="major">
+        <h2>Últimas postagens</h2>
+    </header>
+    <div class="posts">
+    	{% blog_recent_posts 5 as recent_posts %}
+		{% for recent_post in recent_posts %}
+        <article>
+            <a href="#" class="image"><img src="{{ MEDIA_URL }}{% thumbnail recent_post.featured_image 90 90 %}" alt="" /></a>
+            <h3>{{ recent_post.title }}</h3>
+            <p>{{ recent_post.description|safe }}</p>
+            <ul class="actions">
+                <li><a href="{{ recent_post.get_absolute_url }}" class="button">Mais</a></li>
+            </ul>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+{{ block.super }}
+{% endblock %}
